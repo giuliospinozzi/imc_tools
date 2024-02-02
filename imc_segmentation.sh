@@ -97,10 +97,15 @@ done
 
 echo "<`date +'%Y-%m-%d %H:%M:%S'`> [OPBG] Processing Data"
 for DIR in ${ROOT}/*/ ; do
-    echo "<`date +'%Y-%m-%d %H:%M:%S'`> [OPBG] Processing Sample ${DIR}"
+    echo "<`date +'%Y-%m-%d %H:%M:%S'`> [OPBG] Processing Samples ${DIR}"
+    echo "<`date +'%Y-%m-%d %H:%M:%S'`> [OPBG] Processing Samples: Hot Pixel Removal ${DIR}"
+    python3 /opt/scripts/imc_tools/filter_steinbock.py ${DIR} --type tophat --value 3
+    echo "<`date +'%Y-%m-%d %H:%M:%S'`> [OPBG] Processing Samples: Steinbock - preprocess external images ${DIR}"
     docker run -v $DIR:/data -u $(id -u):$(id -g) --network host -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY ghcr.io/bodenmillergroup/steinbock:0.16.1 preprocess external images
     cp ${PANEL} $DIR
+    echo "<`date +'%Y-%m-%d %H:%M:%S'`> [OPBG] Processing Samples: Steinbock - Segmentation ${DIR}"
     docker run -v $DIR:/data -u $(id -u):$(id -g) --network host -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY ghcr.io/bodenmillergroup/steinbock:0.16.1 segment deepcell --minmax
+    echo "<`date +'%Y-%m-%d %H:%M:%S'`> [OPBG] Processing Samples: Steinbock - Measures ${DIR}"
     docker run -v $DIR:/data -u $(id -u):$(id -g) --network host -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY ghcr.io/bodenmillergroup/steinbock:0.16.1 measure intensities
     docker run -v $DIR:/data -u $(id -u):$(id -g) --network host -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY ghcr.io/bodenmillergroup/steinbock:0.16.1 measure regionprops
     docker run -v $DIR:/data -u $(id -u):$(id -g) --network host -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY ghcr.io/bodenmillergroup/steinbock:0.16.1 measure neighbors --type centroids --dmax 20
