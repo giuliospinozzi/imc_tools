@@ -45,6 +45,7 @@ renamed_path = os.path.join(rootpath,'img_old')
 os.rename(inpath,renamed_path)
 os.makedirs(inpath,exist_ok=True)
 
+print('[OPBG] PYTHON HOT PIXEL FILTER -> START')
 for f in os.listdir(renamed_path):
     if f.endswith('.tiff'):
         filename = os.path.join(renamed_path,f)
@@ -78,12 +79,12 @@ for f in os.listdir(renamed_path):
         print('Done')
 print('Done!')
 
-print('---> Renaming Folder in External')
+print('[OPBG] PYTHON HOT PIXEL FILTER -> Renaming Folder in External')
 external_path = os.path.join(rootpath,'external')
 os.rename(inpath,external_path)
 print('Done!')
 
-print('---> Compressing original img folder')
+print('[OPBG] PYTHON HOT PIXEL FILTER -> Compressing original img folder')
 shutil.make_archive(renamed_path, 'zip', root_dir=renamed_path)
 shutil.rmtree(renamed_path)
-print('AllDone!')
+print('[OPBG] PYTHON HOT PIXEL FILTER -> END')
