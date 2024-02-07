@@ -86,6 +86,8 @@ for DIR in ${ROOT}/*/ ; do
     docker run -v ${DIR}:/data -u $(id -u):$(id -g) --network host -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY ghcr.io/bodenmillergroup/steinbock:0.16.1 preprocess imc images --hpf 50
 done
 
+docker rm $(docker ps -a -f status=exited -q)
+
 echo "
 
     ---------------------------------------------------------------------------------

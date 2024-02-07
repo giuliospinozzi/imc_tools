@@ -116,6 +116,8 @@ for DIR in ${ROOT}/*/ ; do
     "
 done
 
+docker rm $(docker ps -a -f status=exited -q)
+
 echo "
 
     ---------------------------------------------------------------------------------
