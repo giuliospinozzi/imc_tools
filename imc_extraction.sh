@@ -26,7 +26,7 @@ usage()
 {
     echo "This app is the OPBG IMC Extraction Tool for Steinbock."
     echo
-    echo "Usage: $0 [-r ROOTDIR] [-p panel.tsv]"
+    echo "Usage: $0 [-r ROOTDIR]"
     echo
     echo "  [-r ROOTDIR]    - Root Path of Steinbock folders (without last slash!)"
     echo
