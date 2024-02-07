@@ -111,6 +111,9 @@ for DIR in ${ROOT}/*/ ; do
     docker run -v $DIR:/data -u $(id -u):$(id -g) --network host -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY ghcr.io/bodenmillergroup/steinbock:0.16.1 measure neighbors --type centroids --dmax 20
     tar --use-compress-program="pigz -k " -cf ${DIR}external.tar.gz ${DIR}external --absolute-names
     rm -rf ${DIR}external
+    echo "<`date +'%Y-%m-%d %H:%M:%S'`> [OPBG] --------------------------------------
+    
+    "
 done
 
 echo "
