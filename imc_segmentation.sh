@@ -99,7 +99,7 @@ echo "<`date +'%Y-%m-%d %H:%M:%S'`> [OPBG] Processing Data"
 for DIR in ${ROOT}/*/ ; do
     echo "<`date +'%Y-%m-%d %H:%M:%S'`> [OPBG] Processing Sample ${DIR}"
     echo "<`date +'%Y-%m-%d %H:%M:%S'`> [OPBG] Processing Sample: Hot Pixel Removal"
-    python3 /opt/scripts/imc_tools/filter_steinbock.py ${DIR} --type tophat --value 3
+    python3 /opt/scripts/imc_tools/filter_steinbock.py ${DIR} --type tophat --value 2
     echo "<`date +'%Y-%m-%d %H:%M:%S'`> [OPBG] Processing Sample: Steinbock - preprocess external images"
     docker run -v $DIR:/data -u $(id -u):$(id -g) --network host -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY ghcr.io/bodenmillergroup/steinbock:0.16.1 preprocess external images
     cp ${PANEL} $DIR
