@@ -1,0 +1,23 @@
+# Lista dei marker (nomi dei marker separati da virgola)
+aSMA,CD19,p53,GFAP,CD16,CD11b,PDL1,CD45,PDGFRa,Ki67,coll,G34R,Bcat,CD3,K27M
+
+# Canali da escludere (nomi dei canali separati dal pipe)
+80ArAr|127|131|138|134|empty|DNA|ICSK|208|BCOR|NR2E1|MPP|CD248|Segm|CD31|PD1|CD276|RORgT
+
+# Cartella in cui verranno salvati i plot (nome della cartella seguito da front-slas)
+Analisi2/
+
+# Valore di scale_value (numero tra 1 e 5)
+2
+
+# Eseguire la correzione batch (Si o No)
+Si
+
+# Usare i cluster automatici da Louvain per flowsom e steinbock graph?(TRUE or FALSE)
+TRUE
+
+# Numero di cluster manuali (se Usare i cluster automatici è No)
+10
+
+# Lista delle ROI da processare (numeri delle ROI separati da virgola)
+1,2
